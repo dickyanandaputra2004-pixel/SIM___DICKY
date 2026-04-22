@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SIM_PRO_DICKY</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    body { margin:0; font-family: Arial; }
+
+    #header{
+      position:absolute;
+      z-index:999;
+      width:100%;
+      background:#0b1f14;
+      color:white;
+      text-align:center;
+      padding:10px;
+      font-weight:bold;
+    }
+
+    #logo{
+      display:inline-block;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      background:#1f6f3f;
+      line-height:30px;
+      margin-right:8px;
+      font-weight:bold;
+    }
+
+    #map{
+      height:100vh;
+      width:100%;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="header">
+  <span id="logo">DC</span>
+  SIM_PRO_DICKY | WEBGIS PERKEBUNAN SAWIT
+</div>
+
+<div id="map"></div>
+
+<script>
+
+// =====================
+// MAP BASE
+// =====================
+var map = L.map('map').setView([0.6500, 101.9024], 15);
+
+// SATELLITE LAYER
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Satellite'
+}).addTo(map);
+
+// =====================
+// FUNCTION BLOK SAWIT
+// =====================
+function addBlock(name, coords, color){
+
+  var poly = L.polygon(coords, {
+    color: "white",
+    weight: 2,
+    fillColor: color,
+    fillOpacity: 0.6
+  }).addTo(map);
+
+  poly.on("click", function(){
+    this.bindPopup("<b>🌴 " + name + "</b>").openPopup();
+  });
+
+}
+
+// =====================
+// 15 BLOK SAWIT (FIXED)
+// =====================
+
+// BARIS 1
+addBlock("B1", [[0.6512,101.8998],[0.6513,101.9004],[0.6509,101.9005],[0.6508,101.8999]], "green");
+addBlock("B2", [[0.6512,101.9009],[0.6513,101.9015],[0.6509,101.9016],[0.6508,101.9010]], "darkgreen");
+addBlock("B3", [[0.6512,101.9020],[0.6513,101.9026],[0.6509,101.9027],[0.6508,101.9021]], "lime");
+addBlock("B4", [[0.6512,101.9031],[0.6513,101.9037],[0.6509,101.9038],[0.6508,101.9032]], "olive");
+addBlock("B5", [[0.6512,101.9042],[0.6513,101.9048],[0.6509,101.9049],[0.6508,101.9043]], "orange");
+
+// BARIS 2
+addBlock("B6", [[0.6502,101.8998],[0.6503,101.9004],[0.6499,101.9005],[0.6498,101.8999]], "red");
+addBlock("B7", [[0.6502,101.9009],[0.6503,101.9015],[0.6499,101.9016],[0.6498,101.9010]], "purple");
+addBlock("B8", [[0.6502,101.9020],[0.6503,101.9026],[0.6499,101.9027],[0.6498,101.9021]], "blue");
+addBlock("B9", [[0.6502,101.9031],[0.6503,101.9037],[0.6499,101.9038],[0.6498,101.9032]], "cyan");
+addBlock("B10",[[0.6502,101.9042],[0.6503,101.9048],[0.6499,101.9049],[0.6498,101.9043]], "brown");
+
+// BARIS 3
+addBlock("B11",[[0.6492,101.8998],[0.6493,101.9004],[0.6489,101.9005],[0.6488,101.8999]], "pink");
+addBlock("B12",[[0.6492,101.9009],[0.6493,101.9015],[0.6489,101.9016],[0.6488,101.9010]], "gold");
+addBlock("B13",[[0.6492,101.9020],[0.6493,101.9026],[0.6489,101.9027],[0.6488,101.9021]], "teal");
+addBlock("B14",[[0.6492,101.9031],[0.6493,101.9037],[0.6489,101.9038],[0.6488,101.9032]], "green");
+addBlock("B15",[[0.6492,101.9042],[0.6493,101.9048],[0.6489,101.9049],[0.6488,101.9043]], "darkgreen");
+
+</script>
+
+</body>
+</html>
